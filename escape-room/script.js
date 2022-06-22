@@ -15,7 +15,7 @@ MathJax = {
           const w = parser.GetBrackets(name, '5em');
           const value = parser.GetArgument(name);
           xml.setXML(MathJax.startup.adaptor.node('input', {
-            id: id, value: value, style: {left, position: "relative", fontSize: size, width: w}, xmlns: 'http://www.w3.org/1999/xhtml'
+            id: id, type: 'number', value: value, style: {left, position: "relative", fontSize: size, width: w}, xmlns: 'http://www.w3.org/1999/xhtml'
           }), MathJax.startup.adaptor);
           xml.getSerializedXML = function () {
             return this.adaptor.outerHTML(this.xml) + '</input>';
