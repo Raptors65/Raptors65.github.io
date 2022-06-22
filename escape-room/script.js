@@ -38,9 +38,22 @@ MathJax = {
   }
 };
 
+let feedback;
+
+window.addEventListener('load', function() {
+  feedback = document.getElementById('feedback');
+});
+
 function enterAnswer() {
   if (checkAnswer()) {
-    window.location = nextQuestion;
-    window.location.assign(nextQuestion);
+    feedback.style.color = "#090";
+    feedback.innerText = "Correct!";
+    location = nextQuestion;
+    location.assign(nextQuestion);
+  } else {
+    feedback.style.color = "#f00";
+    feedback.innerText = "Incorrect!";
+    feedback.classList.add('shake');
+    setTimeout(() => feedback.classList.remove('shake'), 1000);
   }
 }

@@ -1,0 +1,27 @@
+body {
+  background-color: #222;
+  color: #eee;
+}
+
+.shake {
+  animation: shake 1s;
+  position: relative;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(3px, 0px);
+  }
+
+  15% {
+    transform: translate(-6px, 0px);
+  }
+
+  45% {
+    transform: translate(5px, 0px);
+  }
+
+  75% {
+    transform: translate(-4px, 0px);
+  }
+}
