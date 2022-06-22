@@ -3,10 +3,26 @@ body {
   color: #eee;
 }
 
+#feedback {
+  font-weight: 600;
+}
+
+.message {
+  background-color: #aaa;
+  border-radius: 5px;
+  color: black;
+  font-family: 'Shadows into Light';
+  font-size: 30px;
+  margin: 20px auto;
+  padding: 10px;
+  width: 25%;
+}
+
 .shake {
   animation: shake 1s;
   position: relative;
 }
+
 
 @keyframes shake {
   0% {

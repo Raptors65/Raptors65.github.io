@@ -42,16 +42,27 @@ let feedback;
 
 window.addEventListener('load', function() {
   feedback = document.getElementById('feedback');
+  document.getElementById('enter').addEventListener('click', enterAnswer);
+
+  for (let element of document.querySelectorAll('input')) {
+    element.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        enterAnswer();
+      }
+    });
+  }
 });
+
+
 
 function enterAnswer() {
   if (checkAnswer()) {
-    feedback.style.color = "#090";
+    feedback.style.color = "#0f0";
     feedback.innerText = "Correct!";
     location = nextQuestion;
     location.assign(nextQuestion);
   } else {
-    feedback.style.color = "#f00";
+    feedback.style.color = "#f44";
     feedback.innerText = "Incorrect!";
     feedback.classList.add('shake');
     setTimeout(() => feedback.classList.remove('shake'), 1000);
