@@ -27,9 +27,9 @@
       <p>note: i measured 1 mg of salmonella at 4:24 pm, eat before 60 mg</p>
     </div>
     <p>Using your vast experience dealing with biohazards as Batman, you know that Salmonella has a doubling time of
-      roughly 27 minutes 54 seconds. You see there is a lock on the food container with another question attatched to
+      roughly 27 minutes 54 seconds. You see there is a lock on the food container with another question attached to
       it. You must calculate the time at which the food will become unsafe to eat.</p>
-    <p>There is a clock in this room, which may indicate that your time is limited.</p>
+    <p>There is a clock on the wall, which may indicate that the food will become unsafe soon.</p>
 
     <div id="clock" class="border fs-1 p-3 text-center w-25 fw-bold">19:00:00</div>
     <div class="border w-25 mt-5 m-auto p-3 text-center">
@@ -51,19 +51,6 @@
     let answer, clock;
     let time = new Date();
     time.setHours(19, 0, 0, 0);
-
-    function findGetParameter(parameterName) {
-      var result = null,
-        tmp = [];
-      location.search
-        .substr(1)
-        .split("&")
-        .forEach(function (item) {
-          tmp = item.split("=");
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        });
-      return result;
-    }
 
     window.addEventListener('load', function () {
       answer = document.getElementById('answer');
