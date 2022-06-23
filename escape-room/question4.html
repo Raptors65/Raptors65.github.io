@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    #canvas {
+      background-color: white;
+      float: left;
+      margin-right: 20px;
+    }
+
+    #x0,
+    #y0,
+    #x1,
+    #y1 {
+      width: 2em;
+    }
+  </style>
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 4 of ???</h1>
+    $$28\tan^2\theta+11\tan\theta+16=22\tan^2\theta+6\tan\theta+20$$
+    <canvas width="500" height="500" id="canvas"></canvas>
+
+    <div class="d-inline-block border w-50 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      Vertical Stretch/Compression: <input id="a" type="number" min="-10" max="10" step="0.1" value="1"
+        oninput="updateGraph();"><br>
+      Vertical Reflection? <input id="v-refl" type="checkbox" oninput="updateGraph();"><br>
+      Horizontal Stretch/Compression: <input id="k" type="number" min="-10" max="10" step="0.1" value="1"
+        oninput="updateGraph();"><br>
+      Horizontal Reflection? <input id="h-refl" type="checkbox" oninput="updateGraph();"><br>
+      Horizontal Shift: <input id="p" type="number" min="-10" max="10" step="1" value="0" oninput="updateGraph();"><br>
+      Vertical Shift: <input id="q" type="number" min="-10" max="10" step="1" value="0" oninput="updateGraph();"><br>
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question5.html';
+
+    let canvas, ctx, a, vRefl, k, hRefl, p, q;
+    const domain = { min: -10, max: 10 };
+    const range = { min: -10, max: 10 };
+    const tickWidth = 10;
+    const fontSize = 16;
+
+    function toXCoordinate(xPixel) {
+      return domain.min + (xPixel * ((domain.max - domain.min) / canvas.width));
+    }
+
+    function toYCoordinate(yPixel) {
+      return range.max - (yPixel * ((range.max - range.min) / canvas.height));
+    }
+
+    function toXPixel(xCoordinate) {
+      return ((xCoordinate - domain.min) * (canvas.width / (domain.max - domain.min)));
+    }
+
+    function toYPixel(yCoordinate) {
+      return ((range.max - yCoordinate) * (canvas.height / (range.max - range.min)));
+    }
+
+    function drawAxes() {
+      let x0 = canvas.width / 2;
+      let y0 = canvas.height / 2;
+      ctx.beginPath();
+      ctx.strokeStyle = '#000';
+
+      ctx.moveTo(0, y0);
+      ctx.lineTo(canvas.width, y0);
+
+      ctx.moveTo(x0, 0);
+      ctx.lineTo(x0, canvas.height);
+
+      ctx.font = `${fontSize} Arial`;
+      ctx.fillStyle = '#000';
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      for (let xCoordinate = domain.min + 1; xCoordinate < domain.max; xCoordinate++) {
+        if (xCoordinate !== 0) {
+          const xPixel = toXPixel(xCoordinate)
+          ctx.moveTo(xPixel, y0 - (tickWidth / 2));
+          ctx.lineTo(xPixel, y0 + (tickWidth / 2));
+          ctx.fillText(xCoordinate, xPixel, y0 + (tickWidth / 2));
+        }
+      }
+
+      ctx.textAlign = 'right';
+      ctx.fillText('x', canvas.width, y0 + (tickWidth / 2));
+
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      for (let yCoordinate = range.min + 1; yCoordinate < range.max; yCoordinate++) {
+        if (yCoordinate !== 0) {
+          const yPixel = toYPixel(yCoordinate);
+          ctx.moveTo(x0 - (tickWidth / 2), yPixel);
+          ctx.lineTo(x0 + (tickWidth / 2), yPixel);
+          ctx.fillText(yCoordinate, x0 - (tickWidth / 2), yPixel);
+        }
+      }
+
+      ctx.textBaseline = 'top';
+      ctx.fillText('y', x0 - (tickWidth / 2), 0);
+
+      ctx.stroke();
+    }
+
+    function drawVA(xCoordinate) {
+      const xPixel = toXPixel(xCoordinate);
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#f00';
+      ctx.lineWidth = 3;
+      ctx.setLineDash([10, 10]);
+
+      ctx.moveTo(xPixel, 0);
+      ctx.lineTo(xPixel, canvas.height);
+      ctx.stroke();
+    }
+
+    function drawHA(yCoordinate) {
+      const yPixel = toYPixel(yCoordinate);
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#f00';
+      ctx.lineWidth = 3;
+      ctx.setLineDash([10, 10]);
+
+      ctx.moveTo(0, yPixel);
+      ctx.lineTo(canvas.width, yPixel);
+      ctx.stroke();
+    }
+
+    function drawFunction(func, asymptote) {
+      ctx.beginPath();
+      ctx.strokeStyle = '#090';
+
+      let wasAsymptote = false;
+
+      for (let xPixel = 0; xPixel <= canvas.width; xPixel++) {
+        const xCoordinate = toXCoordinate(xPixel);
+        if (xCoordinate == asymptote) {
+          wasAsymptote = true;
+        } else if (wasAsymptote || xPixel == 0) {
+          ctx.moveTo(xPixel, toYPixel(func(xCoordinate)));
+          wasAsymptote = false;
+        } else {
+          ctx.lineTo(xPixel, toYPixel(func(xCoordinate)));
+        }
+      }
+      ctx.stroke();
+    }
+
+    function drawPoint(xCoordinate, yCoordinate) {
+      console.log(xCoordinate, yCoordinate);
+      ctx.beginPath();
+      ctx.fillStyle = '#090';
+      ctx.arc(toXPixel(xCoordinate), toYPixel(yCoordinate), 5, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    function updateGraph() {
+      const reflA = parseFloat(vRefl.checked ? -a.value : a.value);
+      const reflK = parseFloat(hRefl.checked ? -k.value : k.value);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawAxes();
+      drawFunction(x => (reflA / ((1 / reflK) * (x - p.value))) + parseInt(q.value), p.value);
+      drawVA(p.value);
+      drawHA(q.value);
+      ctx.lineWidth = 1;
+      ctx.setLineDash([]);
+      drawPoint(parseInt(p.value) + reflA, parseInt(q.value) + reflK);
+      drawPoint(p.value - reflA, q.value - reflK);
+    }
+
+    window.addEventListener('load', function () {
+      canvas = document.getElementById("canvas");
+      ctx = canvas.getContext('2d');
+      a = document.getElementById('a');
+      vRefl = document.getElementById('v-refl');
+      k = document.getElementById('k');
+      hRefl = document.getElementById('h-refl');
+      p = document.getElementById('p');
+      q = document.getElementById('q');
+      updateGraph();
+    });
+
+    function checkAnswer() {
+      return ((a.value * k.value) == 1.5
+        && (p.value == -4)
+        && (q.value == -2)
+        && (((vRefl.checked + hRefl.checked) % 2) == 0));
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
