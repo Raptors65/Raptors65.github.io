@@ -29,7 +29,9 @@
     <p>Using your vast experience dealing with biohazards as Batman, you know that Salmonella has a doubling time of
       roughly 27 minutes 54 seconds. You see there is a lock on the food container with another question attatched to
       it. You must calculate the time at which the food will become unsafe to eat.</p>
+    <p>There is a clock in this room, which may indicate that your time is limited.</p>
 
+    <div id="clock" class="border fs-1 p-3 text-center w-25 fw-bold">19:00:00</div>
     <div class="border w-25 mt-5 m-auto p-3 text-center">
       <h2>Answer</h2>
       <input id="answer" type="time">
@@ -46,9 +48,31 @@
   <script>
     let nextQuestion = 'question7.html';
 
-    let answer;
+    let answer, clock;
+    let time = new Date();
+    time.setHours(19, 0, 0, 0);
+
+    function findGetParameter(parameterName) {
+      var result = null,
+        tmp = [];
+      location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+      return result;
+    }
+
     window.addEventListener('load', function () {
       answer = document.getElementById('answer');
+      clock = document.getElementById('clock');
+      setInterval(() => {
+        time = new Date(time.getTime() + 1000);
+        clock.innerText = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}`;
+        nextQuestion = `question7.html?time=${time.getTime()}`;
+      }, 1000);
     });
 
     function checkAnswer() {
