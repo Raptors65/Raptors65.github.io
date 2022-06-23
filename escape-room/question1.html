@@ -28,26 +28,27 @@
       <button id="enter">Enter</button><br>
       <div id="feedback"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-      crossorigin="anonymous"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-      let nextQuestion = 'question2.html';
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question2.html';
 
-      let index, radicand;
-      window.addEventListener('load', function () {
-        index = document.getElementById('index');
-        radicand = document.getElementById('radicand');
-      });
+    let index, radicand;
+    window.addEventListener('load', function () {
+      index = document.getElementById('index');
+      radicand = document.getElementById('radicand');
+    });
 
-      function checkAnswer() {
-        return index.value == 4 && radicand.value == 7;
-      }
-    </script>
-    <script src="script.js"></script>
+    function checkAnswer() {
+      return index.value == 4 && radicand.value == 7;
+    }
+  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>

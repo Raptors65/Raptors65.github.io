@@ -80,40 +80,41 @@
       <button id="enter">Enter</button>
       <div class="mt-5 text-center" id="feedback"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-      crossorigin="anonymous"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-      let nextQuestion = 'question4.html';
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question4.html';
 
-      let answer;
-      let buttonColors = [false, false, false, false, false];
-      const correctColors = [false, true, false, true, false];
-      window.addEventListener('load', function () {
-        answer = document.getElementById('answer');
+    let answer;
+    let buttonColors = [false, false, false, false, false];
+    const correctColors = [false, true, false, true, false];
+    window.addEventListener('load', function () {
+      answer = document.getElementById('answer');
 
-        for (let button of document.getElementsByClassName('select')) {
-          button.addEventListener('click', function (e) {
-            e.target.style.backgroundColor = buttonColors[e.target.id.slice(-1)] ? 'red' : 'green';
-            buttonColors[e.target.id.slice(-1)] = !buttonColors[e.target.id.slice(-1)];
-          });
-        }
-      });
-
-      function checkAnswer() {
-        return (buttonColors.every((value, index) => value === correctColors[index])
-          && document.getElementById('input-0').value == -4
-          && document.getElementById('input-10').value == -2
-          && document.getElementById('input-11').value == 9
-          && document.getElementById('input-20').value == 5
-          && document.getElementById('input-21').value == 6
-          && document.getElementById('input-3').value == 5);
+      for (let button of document.getElementsByClassName('select')) {
+        button.addEventListener('click', function (e) {
+          e.target.style.backgroundColor = buttonColors[e.target.id.slice(-1)] ? 'red' : 'green';
+          buttonColors[e.target.id.slice(-1)] = !buttonColors[e.target.id.slice(-1)];
+        });
       }
-    </script>
-    <script src="script.js"></script>
+    });
+
+    function checkAnswer() {
+      return (buttonColors.every((value, index) => value === correctColors[index])
+        && document.getElementById('input-0').value == -4
+        && document.getElementById('input-10').value == -2
+        && document.getElementById('input-11').value == 9
+        && document.getElementById('input-20').value == 5
+        && document.getElementById('input-21').value == 6
+        && document.getElementById('input-3').value == 5);
+    }
+  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
