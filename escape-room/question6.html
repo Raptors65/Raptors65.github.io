@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 6 of ???</h1>
+
+    <p>You walk into the next room. This one is massive; it looks like a school cafeteria. You smell food and realize
+      how hungry you are. You follow the smell.</p>
+    <p>At the opposite end of the cafeteria, inside a glass container, there is a delicious-looking plate filled with
+      spaghetti and meatballs.
+      Beside it, there is another letter:</p>
+    <div class="message">
+      <p>lunch break!</p>
+      <p>note: i measured 1 mg of salmonella at 4:24 pm, eat before 60 mg</p>
+    </div>
+    <p>Using your vast experience dealing with biohazards as Batman, you know that Salmonella has a doubling time of
+      roughly 27 minutes 54 seconds. You see there is a lock on the food container with another question attatched to
+      it. You must calculate the time at which the food will become unsafe to eat.</p>
+
+    <div class="border w-25 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      <input id="answer" type="time">
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question7.html';
+
+    let answer;
+    window.addEventListener('load', function () {
+      answer = document.getElementById('answer');
+    });
+
+    function checkAnswer() {
+      return answer.value === '19:09';
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
