@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 8 of ???</h1>
+
+    <p>You enter a new classroom. There is a graph projected onto the wall:</p>
+    <img src="question8.png">
+    <div class="message">
+      <p>the equation will be helpful</p>
+    </div>
+
+    <div class="border w-50 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      $$y=\input[a][][][4em]{}\sin[\frac{2\pi}{\input[period][][][3em]{}}(x - \input[d][][][4em]{})] +
+      \input[c][][][4em]{}$$
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question9.html';
+
+    let a, k, d, c;
+    window.addEventListener('load', function () {
+      a = document.getElementById('a');
+      period = document.getElementById('period');
+      d = document.getElementById('d');
+      c = document.getElementById('c');
+    });
+
+    function checkAnswer() {
+      return (a.value == 195.5
+        && period.value == 365
+        && d.value == 81.25
+        && c.value == 731.5);
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
