@@ -13,6 +13,8 @@
 
 <body>
   <main class="my-5 container">
+    <p style="font-size: 14px;">(Reminder: during the introduction and conclusion, you can press any key to speed up the
+      story.)</p>
     <p id="0"></p>
     <p id="1"></p>
     <p id="2"></p>
@@ -41,9 +43,9 @@
       "Before you can say anything, the man talks.",
       "\"That took much longer than it should have.\"",
       "\"How are you alive?\" you ask.",
-      "\"Every day, I would watch as kids imitated Batman,\" he continues, not answering your question. \"They would talk in their deepest voice and fight imaginary bad guys. It was amusing to watch.",
+      "\"Every day, I would watch as my students imitated Batman,\" he continues, not answering your question. \"They would talk in their deepest voice and fight imaginary bad guys. It was amusing to watch.",
       "\"But as they did that, they lost all interest for mathematics. 'Why should I care about math if Batman doesn't need math to stop bad guys?' they'd ask. I hated that.",
-      "\"I was never murdered. I just needed Batman be a mathematician to show kids that math is important. And clearly, I've succeeded.",
+      "\"I was never murdered. I just needed Batman be a mathematician to show kids that math is important. And clearly, I've succeeded.\"",
       "You laugh. \"You really think that making me go through your dumb puzzles will change anything?\"",
       "\"It already has,\" he responds.",
       "The mathematician turns up the volume on a TV in the corner of the room. The text at the bottom says, \"BATMAN SOLVING MURDER, USING MATH.\" A reporter is investigating a kid who appears to be doing math... for fun?",
@@ -62,7 +64,11 @@
         paragraph++;
         setTimeout(typeEffect, paragraphDelay);
       } else {
-        setTimeout(() => document.getElementById("end").style.display = "block", 1000);
+        setTimeout(() => {
+          document.getElementById("end").style.display = "block";
+          const victoryMusic = new Audio('victory.mp3');
+          victoryMusic.play();
+        }, 1000);
       }
     }
 
