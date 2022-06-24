@@ -45,7 +45,7 @@
     let nextQuestion = 'question8.html';
 
     let answer;
-    let time;
+    let time, endTime;
 
     const answers = ['1024', '5', '0', '15', '-8960', '4', '1', '12', '31360', '3', '2', '9', '-54880', '2', '3', '6', '48020', '1', '4', '3', '-16807', '0', '5', '0'];
 
@@ -65,15 +65,24 @@
     window.addEventListener('load', function () {
       answer = document.getElementById('answer');
       time = new Date(parseInt(findGetParameter('time')));
+      endTime = new Date(parseInt(findGetParameter('time')));
+      endTime.setHours(19, 9, 0, 0);
       setInterval(() => {
         time = new Date(time.getTime() + 1000);
         clock.innerText = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}`;
+        if (time.getTime() > endTime.getTime()) {
+          alert("Unfortunately, the food has now become unsafe. You move on to the next room, but feel extremely hungry.");
+          location.assign(nextQuestion);
+        }
       }, 1000);
     });
 
     function checkAnswer() {
       const userAnswers = Array.from(document.querySelectorAll('input')).slice(0, 24);
-      return userAnswers.every((input, index) => input.value === answers[index]);
+      if (userAnswers.every((input, index) => input.value === answers[index])) {
+        alert("You devour the spaghetti and meatballs which satisfies your hunger.");
+        return true;
+      }
     }
   </script>
   <script src="script.js"></script>
