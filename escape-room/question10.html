@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    .tile {
+      background-color: red;
+      padding: 5px;
+      width: 50px;
+    }
+
+    #c,
+    #h {
+      transform: translateX(4px);
+    }
+
+    .axis {
+      transform: translateX(25px);
+    }
+  </style>
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 10 of ???</h1>
+
+    <p>The door on the opposite side of the room leads into a short, narrow hallway with a door at the end. The hallway
+      floor has red tiles that give off
+      light. As you step onto them, you notice that they toggle between red and green each time you touch them.</p>
+    <p>You notice that there are ten tiles, split into two groups of five. On the wall, there is an 'x' written beside
+      the first group and a 'y' beside the second group. The tiles are numbered between -6 and 3.</p>
+    <p>Additionally, there is a message and an equation.</p>
+    <div class="message">
+      <p>only step in the domain and range.</p>
+    </div>
+    $$f(x)=\frac{7}{3x^2+24x+36}+2$$
+
+    <div class="border w-25 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      <button class="tile" id="a">-6</button><br>
+      <button class="tile" id="b">-5</button><br>
+      <button class="tile" id="c">-4</button><span class="d-inline-block axis">x</span><br>
+      <button class="tile" id="d">-3</button><br>
+      <button class="tile" id="e">-2</button><br><br>
+      <button class="tile" id="f">-1</button><br>
+      <button class="tile" id="g">0</button><br>
+      <button class="tile" id="h">1</button><span class="d-inline-block axis">y</span><br>
+      <button class="tile" id="i">2</button><br>
+      <button class="tile" id="j">3</button><br>
+
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question11.html';
+
+    let buttonColors = [false, false, false, false, false, false, false, false, false, false];
+    const correctColors = [false, true, true, true, false, true, true, true, false, true];
+
+    let answer;
+    window.addEventListener('load', function () {
+      const tiles = document.getElementsByClassName('tile');
+      for (let i = 0; i < tiles.length; i++) {
+        const button = tiles[i];
+        button.addEventListener('click', function (e) {
+          e.target.style.backgroundColor = buttonColors[i] ? 'red' : 'green';
+          buttonColors[i] = !buttonColors[i];
+        });
+      }
+    });
+
+    function checkAnswer() {
+      return buttonColors.every((value, index) => value === correctColors[index]);
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
