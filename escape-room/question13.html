@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 13 of ???</h1>
+
+    <p>You enter another classroom that looks just like the first few you went through.</p>
+    <div class="message">
+      <p>don't worry, you're almost there. stay positive.</p>
+    </div>
+    $$\frac{-24x^4+242x^3+330x^2-4212x-7776}{7x^2-19x+10}>0$$
+
+    <div class="border w-50 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      $$x\in(\frac{\input[][][][3em]{}}{\input[][][][3em]{}},
+      \frac{\input[][][][3em]{}}{\input[][][][3em]{}})\cup(\frac{\input[][][][3em]{}}{\input[][][][3em]{}},
+      \input[][][][3em]{})\cup(\input[][][][3em]{}, \input[][][][3em]{})$$
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question14.html';
+
+    const answers = ['-8', '3', '-9', '4', '5', '7', '2', '6', '9'];
+
+    let answer;
+    window.addEventListener('load', function () {
+      answer = document.getElementById('answer');
+    });
+
+    function checkAnswer() {
+      const userAnswers = Array.from(document.querySelectorAll('input')).slice(0, 9);
+      return userAnswers.every((input, index) => input.value === answers[index]);
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
