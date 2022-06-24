@@ -79,7 +79,9 @@
         if (time.getTime() > endTime.getTime()) {
           clearInterval(interval);
           alert("Unfortunately, the food has now become unsafe. You move on to the next room, but feel extremely hungry.");
-          location.assign(nextQuestion);
+          const openDoorAudio = new Audio('opening-door.mp3');
+          openDoorAudio.addEventListener('ended', () => location.assign(nextQuestion));
+          openDoorAudio.play();
         }
       }, 1000);
     });

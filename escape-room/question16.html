@@ -87,12 +87,15 @@
             if (checkAnswer()) {
               feedback.style.color = "#0f0";
               feedback.innerText = "The door unlocks!";
-              location = nextQuestion;
-              location.assign(nextQuestion);
+              const openDoorAudio = new Audio('opening-door.mp3');
+              openDoorAudio.addEventListener('ended', () => location.assign(nextQuestion));
+              openDoorAudio.play();
             } else {
               userAnswer = '';
               feedback.style.color = "#f44";
               feedback.innerText = "The door remains locked.";
+              const wrongAudio = new Audio('incorrect.mp3');
+              wrongAudio.play();
               feedback.classList.add('shake');
               setTimeout(() => feedback.classList.remove('shake'), 1000);
             }

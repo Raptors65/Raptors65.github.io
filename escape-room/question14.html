@@ -77,6 +77,7 @@
     let nextQuestion = 'question15.html';
 
     let incorrectTimeout = null;
+    let unlockingAudio;
 
     const keyColors = ['#ff0', '#0ff', '#f5f'];
     const correctAnswers = [1, 2, 0];
@@ -85,6 +86,8 @@
 
     let answer;
     window.addEventListener('load', function () {
+      unlockingAudio = new Audio('unlocking.mp3');
+
       const keys = document.getElementsByClassName('key');
       for (let i = 0; i < keys.length; i++) {
         keys[i].addEventListener('click', () => {
@@ -109,9 +112,11 @@
               feedback.style.color = '#0f0';
               if (isUnlocked.every(x => x)) {
                 feedback.innerText = 'You unlock the door!';
-                location = nextQuestion;
-                location.assign(nextQuestion);
+                const openDoorAudio = new Audio('opening-door.mp3');
+                openDoorAudio.addEventListener('ended', () => location.assign(nextQuestion));
+                openDoorAudio.play();
               } else {
+                unlockingAudio.play();
                 feedback.innerText = 'The key fits!';
               }
             } else {

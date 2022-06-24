@@ -59,8 +59,13 @@ function enterAnswer() {
   if (checkAnswer()) {
     feedback.style.color = "#0f0";
     feedback.innerText = "Correct!";
-    location = nextQuestion;
-    location.assign(nextQuestion);
+    if (location.href.includes('question6.html') || location.href.includes('question12.html') || location.href.includes('question15.html')) {
+      location.assign(nextQuestion);
+    } else {
+      const openDoorAudio = new Audio('opening-door.mp3');
+      openDoorAudio.addEventListener('ended', () => location.assign(nextQuestion));
+      openDoorAudio.play();
+    }
   } else {
     feedback.style.color = "#f44";
     feedback.innerText = "Incorrect!";
