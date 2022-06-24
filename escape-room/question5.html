@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 5 of ???</h1>
+
+    <p>You open the door. The next room has no light; you cannot see the exit door.</p>
+    <img height="400" width="300" src="dark-room-small.jpg">
+    <p>On the other side of door you just entered through, there is a message:</p>
+    <div class="message">
+      <p>the room is like the others, but the exit is 8.5 meters up.</p>
+    </div>
+    <p>With your exceptional distance-estimating abilities, you know that the previous rooms were 16 meters long from
+      the entrance to the exit. You see no ramp or staircase to reach the exit; you will have to use your Grapple Gun (a
+      gun that shoots a grappling hook). You note that you shoot from shoulder height which is 1.5 meters above the
+      ground.</p>
+    <img src="grapple-gun.webp">
+    <p>From the entrance doorway, what is the angle of elevation to the nearest degree that you must shoot at to reach
+      the exit?</p>
+
+    <div class="border w-25 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      <input id="answer" type="number" min="0" max="180" step="1">
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question6.html';
+
+    let answer;
+    window.addEventListener('load', function () {
+      answer = document.getElementById('answer');
+    });
+
+    function checkAnswer() {
+      return answer.value == 24;
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
