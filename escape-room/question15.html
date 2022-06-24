@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    .key {
+      background-color: white;
+      color: black;
+      display: inline-block;
+      width: 30%;
+    }
+  </style>
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 15 of ???</h1>
+
+    <p>There is a desk at the center of the room. On the desk, there are three keys, each with something attached. At
+      the exit door, there are three locks, each with an equation attached.</p>
+
+    <div class="border w-100 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      <div class="d-flex justify-content-between mb-5">
+        <div class="key p-3 border d-flex justify-content-center flex-column">
+          <img width="100" src="key.png">
+          V. stretched by a factor of 3<br>
+          H. stretched by a factor of 7<br>
+          Shift 6 right and 5 up
+        </div>
+        <div class="key p-3 border d-flex justify-content-center flex-column">
+          <img width="100" src="key.png">
+          <img class="w-100" width="400" src="abs-value-graph.png">
+        </div>
+        <div class="key p-3 border d-flex justify-content-center flex-column">
+          <img width="100" src="key.png">
+          $$(x,y)\rightarrow(\frac{1}{7}x-3,5y-6)$$
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="lock p-3 border d-flex justify-content-center flex-column">
+          $$y=5|7x+21|-6$$
+          <img width="100" src="locked.png">
+        </div>
+        <div class="lock p-3 border d-flex justify-content-center flex-column">
+          $$y=3\sqrt{\frac{1}{7}x-\frac{6}{7}}+5$$
+          <img width="100" src="locked.png">
+        </div>
+        <div class="lock p-3 border d-flex justify-content-center flex-column">
+          $$y=-5|\frac{1}{3}x+\frac{7}{3}|-7$$
+          <img width="100" src="locked.png">
+        </div>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question16.html';
+
+    let incorrectTimeout = null;
+
+    const keyColors = ['#ff0', '#0ff', '#f5f'];
+    const correctAnswers = [1, 2, 0];
+    let isUnlocked = [false, false, false];
+    let selectedKey = null;
+
+    let answer;
+    window.addEventListener('load', function () {
+      const keys = document.getElementsByClassName('key');
+      for (let i = 0; i < keys.length; i++) {
+        keys[i].addEventListener('click', () => {
+          if (selectedKey !== null) {
+            keys[selectedKey].style.backgroundColor = 'white';
+          }
+          keys[i].style.backgroundColor = keyColors[i];
+          selectedKey = i;
+        });
+      }
+
+      const locks = document.getElementsByClassName('lock');
+      for (let i = 0; i < locks.length; i++) {
+        locks[i].addEventListener('click', () => {
+          if (selectedKey !== null) {
+            if (correctAnswers[selectedKey] === i) {
+              locks[i].style.backgroundColor = keyColors[selectedKey];
+              locks[i].style.color = 'black';
+              locks[i].children[1].src = 'unlocked.png';
+              selectedKey = null;
+              isUnlocked[i] = true;
+              feedback.style.color = '#0f0';
+              if (isUnlocked.every(x => x)) {
+                feedback.innerText = 'You unlock the door!';
+                location = nextQuestion;
+                location.assign(nextQuestion);
+              } else {
+                feedback.innerText = 'The key fits!';
+              }
+            } else {
+              if (incorrectTimeout !== null) clearTimeout(incorrectTimeout);
+              feedback.style.color = '#f44';
+              feedback.innerText = 'The key doesn\'t fit!';
+              feedback.classList.add('shake');
+              incorrectTimeout = setTimeout(() => feedback.classList.remove('shake'), 1000);
+            }
+          }
+        });
+      }
+    });
+
+    function checkAnswer() {
+      return true;
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
