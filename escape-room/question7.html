@@ -46,6 +46,7 @@
 
     let answer;
     let time, endTime;
+    let interval;
 
     const answers = ['1024', '5', '0', '15', '-8960', '4', '1', '12', '31360', '3', '2', '9', '-54880', '2', '3', '6', '48020', '1', '4', '3', '-16807', '0', '5', '0'];
 
@@ -67,10 +68,11 @@
       time = new Date(parseInt(findGetParameter('time')));
       endTime = new Date(parseInt(findGetParameter('time')));
       endTime.setHours(19, 9, 0, 0);
-      setInterval(() => {
+      interval = setInterval(() => {
         time = new Date(time.getTime() + 1000);
         clock.innerText = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}`;
         if (time.getTime() > endTime.getTime()) {
+          clearInterval(interval);
           alert("Unfortunately, the food has now become unsafe. You move on to the next room, but feel extremely hungry.");
           location.assign(nextQuestion);
         }
