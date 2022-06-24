@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1>Question 9 of ???</h1>
+    <div class="message">
+      <p>that was a graph of daylight hours. 1 is jan 1, 365 is dec 31</p>
+    </div>
+    <p>You notice that this room has no artificial light; there is only the sunlight shining through the window. It will
+      be impossible to continue the investigation without sunlight.</p>
+    <img src="window.jpg">
+    <p>Therefore, you must calculate the time of sunrise and sunset. Luckily, your exceptional Batman memory lets you
+      recall the exact equation from the previous room:</p>
+    $$t=195.5\sin[\frac{2\pi}{365}(d-81.25)] + 731.5$$
+    <p>The date is June 24.</p>
+
+    <div class="border w-25 mt-5 m-auto p-3 text-center">
+      <h2>Answer</h2>
+      <p>(assume noon is an equal distance from sunrise and sunset)</p>
+      Sunrise: <input id="sunrise" type="time"><br>
+      Sunset: <input id="sunset" type="time"><br>
+      <button id="enter">Enter</button><br>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    let nextQuestion = 'question10.html';
+
+    let sunrise, sunset;
+    window.addEventListener('load', function () {
+      sunrise = document.getElementById('sunrise');
+      sunset = document.getElementById('sunset');
+    });
+
+    function checkAnswer() {
+      return sunrise.value === '04:17' && sunset.value === '19:43';
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
