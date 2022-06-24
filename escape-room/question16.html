@@ -72,11 +72,17 @@
     let nextQuestion = 'end.html';
     let userAnswer = '';
 
+    const keypadAudio = new Audio('keypad.mp3');
+
     let numberButtons;
     window.addEventListener('load', function () {
       numberButtons = document.getElementsByClassName('num');
       for (const element of numberButtons) {
-        element.addEventListener('click', () => {
+        element.addEventListener('mousedown', () => {
+          element.style.backgroundColor = '#555';
+          keypadAudio.currentTime = 0;
+          keypadAudio.play();
+
           if (element.innerText === 'ENTER') {
             if (checkAnswer()) {
               feedback.style.color = "#0f0";
@@ -96,7 +102,6 @@
             userAnswer += element.innerText;
           }
         });
-        element.addEventListener('mousedown', () => element.style.backgroundColor = '#555');
         element.addEventListener('mouseup', () => element.style.backgroundColor = '')
       }
     });
