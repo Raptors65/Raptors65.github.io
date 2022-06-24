@@ -4,11 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Escape Room</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Investigating a Mathematical Murder - Lucas Kim</title>
 </head>
 
 <body>
-  <h1>Escape Room</h1>
+  <main class="my-5 container">
+    <h1>Investigating a Mathematical Murder</h1>
+    <img width="200" src="batman.jpg">
+    <p id="0"></p>
+    <p id="1"></p>
+    <p id="2"></p>
+    <a id="start" style="display: none;" class="btn btn-primary" href="question1.html">Start</a>
+  </main>
+  <script>
+    let i = 0;
+    let paragraph = 0;
+    const speed = 50;
+    const paragraphDelay = 200;
+    const text = [
+      "You are Batman. You have been called to investigate the mysterious murder of a mathematician. It seems that the murderer left clues behind.",
+      "But not ordinary clues. Clues involving math. You have tried to explain that superheroes are not necessarily great at math, but everyone always expects Batman to solve every problem nowadays. As a result, you have gone back into your old Grade 11 Functions binder and reviewed your notes. Will Batman be able to save the day once again?",
+      "You've heard rumours the mathematician's house had an entire secret school in its basement; you wonder what other secrets may lie down there. You walk down the stairs, opening the door into the basement..."
+    ];
+
+    function typeEffect() {
+      if (i < text[paragraph].length) {
+        document.getElementById(paragraph.toString()).innerHTML += text[paragraph].charAt(i);
+        i++;
+        setTimeout(typeEffect, speed);
+      } else if (paragraph < 2) {
+        i = 0;
+        paragraph++;
+        setTimeout(typeEffect, paragraphDelay);
+      } else {
+        document.getElementById("start").style.display = "inline-block";
+      }
+    }
+
+    window.addEventListener('load', typeEffect)
+  </script>
 </body>
 
 </html>
