@@ -33,7 +33,7 @@
     ];
 
     function typeEffect() {
-      if (i < text[paragraph].length) {
+      if (paragraph < 3 && i < text[paragraph].length) {
         document.getElementById(paragraph.toString()).innerHTML += text[paragraph].charAt(i);
         i++;
         setTimeout(typeEffect, speed);
@@ -46,7 +46,12 @@
       }
     }
 
-    window.addEventListener('load', typeEffect)
+    window.addEventListener('load', typeEffect);
+    document.body.addEventListener('keydown', () => {
+      document.getElementById(paragraph.toString()).innerHTML = text[paragraph];
+      i = 0;
+      paragraph++;
+    });
   </script>
 </body>
 
