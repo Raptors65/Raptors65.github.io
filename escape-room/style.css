@@ -1,6 +1,12 @@
 body {
   background-color: #222;
+  background-size: cover;
   color: #eee;
+}
+
+.container {
+  background-color: rgba(30, 30, 30, 0.8);
+  padding: 30px;
 }
 
 #feedback {
