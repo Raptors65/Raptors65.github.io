@@ -111,12 +111,12 @@
 
     function checkAnswer() {
       return (buttonColors.every((value, index) => value === correctColors[index])
-        && document.getElementById('input-0').value == -4
-        && document.getElementById('input-10').value == -2
-        && document.getElementById('input-11').value == 9
-        && document.getElementById('input-20').value == 5
-        && document.getElementById('input-21').value == 6
-        && document.getElementById('input-3').value == 5);
+        && document.getElementById('input-0').value === '-4'
+        && document.getElementById('input-10').value === '-2'
+        && document.getElementById('input-11').value === '9'
+        && document.getElementById('input-20').value === '5'
+        && document.getElementById('input-21').value === '6'
+        && document.getElementById('input-3').value === '5');
     }
   </script>
   <script src="script.js"></script>
